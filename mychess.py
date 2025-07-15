@@ -1,152 +1,134 @@
 import streamlit as st
-from PIL import Image
-import requests
-from io import BytesIO
 
-st.set_page_config(page_title="SCN", layout="wide")
+# Set the title of the app
+st.title("Student Chess Network (SCN)")
 
-# Custom styling
-st.markdown("""
-    <style>
-        .stApp { background-color: #e6f2ff; }
-        .full-width-img img { width: 100% !important; height: auto; }
-        .sidebar .sidebar-content { padding-top: 30px; }
-        .block-container { padding-top: 2rem; }
-        .center { text-align: center; }
-        .benefit-icon { font-size: 24px; padding-right: 10px; }
-    </style>
-""", unsafe_allow_html=True)
+# Sidebar for navigation
+page = st.sidebar.selectbox("Select a page", ["Home", "About Us", "Programs", "Sign Up"])
 
-with st.sidebar:
-    st.image("https://i.postimg.cc/vBZcwTSH/Chat-GPT-Image-Jul-2-2025-10-04-14-AM.png", width=150)
-    page = st.radio("Navigate", [
-        "Home", "About Us", "Why Chess is the Best Move", "Summer Camp", "Motivation", "Book a Class"
-    ])
-
-# --- Home ---
+# Home Page
 if page == "Home":
-    st.title("Welcome to SCN")
-    st.subheader("Student Chess Network")
-    st.markdown("""
-    We offer high-quality, student-led chess coaching for all levels:
-    - One-on-one personalized sessions  
-    - Group classes with tactical and strategic focus  
-    - USCF tournament preparation  
-    - Opening/Endgame/Thematic tactics  
+    st.header("Welcome to the Student Chess Network (SCN)!")
+    st.write("""
+        SCN is a student-run chess organization that hosts private chess classes (online and in person), 
+        group lessons, tournaments, and camps during the year. Learning to play chess offers students an 
+        opportunity to sharpen their intellect and develop essential life skills. The game is a powerful 
+        tool for enhancing critical thinking, strategic planning, and decision-making under pressure. 
+        Each move requires thorough analysis and foresight, encouraging players to weigh consequences 
+        and anticipate outcomes. Beyond cognitive benefits, chess also fosters patience, discipline, 
+        and resilience—qualities that translate to academic and personal success. As students navigate 
+        complex challenges both on and off the board, chess equips them with a mindset of perseverance 
+        and ability to make wise decisions, making it a valuable addition to a child’s growth.
+    """)
+    st.image("path_to_logo.png")  # Replace with your logo path
+    st.image("path_to_shouri_trophy.png")  # Replace with your trophy image path
+    st.image("path_to_dhairya_trophy.png")  # Replace with Dhairya's trophy image path
+    st.write("""
+        **Quote:** Life is like a game of chess. To win you have to make a move knowing which move to 
+        make comes with in-sight and knowledge and by learning lessons that are accumulated along the way. 
+        We become each and every piece within the game called Life - Allan Rufus.
     """)
 
-    img = Image.open(BytesIO(requests.get("https://i.postimg.cc/8C32BPfn/image-2.png").content))
-    st.image(img, caption="SCN Chess Coaching", use_container_width=True)
-
-# --- About Us ---
+    
+# About Us Page
 elif page == "About Us":
-    st.title("Meet the Coaches Behind SCN")
-    st.markdown("""
-    Our student coaches are dedicated to helping young players grow and thrive.  
-    Get to know the minds leading your chess journey:
+    st.header("About Us (Founders)")
+    
+    st.subheader("Shouri Mosaliganti (Fundamentals Coach 0-1000 USCF)")
+    st.write("""
+        I started chess by watching my father and gaining curiosity, joining a chess camp and learning 
+        the basics while competing in small tournaments. I began taking private lessons and gained 1600 
+        USCF rating points within two years, captained two school teams to back-to-back state championship 
+        titles, placed in the top 5 best players in the country (for age), won over $5000 in tournament, 
+        have coached chess for over 4 years, and am a certified Tournament Director.
+    """)
+    st.image("path_to_shouri_trophy.png")  # Replace with your trophy image path
+
+    st.subheader("Dhairya Mehta (Intermediate and Advanced Coach 1000-1800 USCF)")
+    st.write("""
+        From a birthday gift to a lifelong passion, my chess journey began at age five when I received 
+        a chessboard that sat unopened for months. I asked my father to teach me the rules and by age 
+        six, I was competing in my first tournament paving my path to a USCF rating of 2160, a 4 time 
+        state champion, 2 winner of the spiegel cup, a top 10 chess player in the country (for age), 
+        a certified tournament director, and chess events organizer in my local community.
+    """)
+    st.image("path_to_dhairya_trophy.png")  # Replace with Dhairya's trophy image path
+
+    st.write("""
+        **Quote:** “Life is like a chess game. It’s not about the pieces but it’s about how you move them.”
     """)
 
-    col1, col2 = st.columns(2)
 
-    with col1:
-        dhairya_img = Image.open(BytesIO(requests.get("https://i.postimg.cc/5yYQhDY7/Untitled-design-2025-07-02-T093341-074.png").content))
-        st.image(dhairya_img, caption="Dhairya Mehta (USCF 2150)", use_container_width=True)
-        st.markdown("""
-**Dhairya Mehta**  
-📧 [mehtadhairya11@gmail.com](mailto:mehtadhairya11@gmail.com)  
-📞 857-832-1547  
-🗓️ [Book a Trial](https://calendly.com/your-trial-link)
+# Programs Page
+elif page == "Programs":
+    st.header("Programs")
+    
+    st.subheader("Private Classes (One on One)")
+    st.write("""
+        Our private lessons are the most popular classes, geared for students that want personalized 
+        training, targeting specific weaknesses with an assigned coach purposed for long term development. 
+        We give weekly lessons (1 hour each week) charging $35 for each lesson or $120 per month. 
+        Once in contact with a coach, details regarding in-person or online and timings can be figured out.
+    """)
+    st.image("path_to_dhairya_coaching.png")  # Replace with coaching image path
 
-I'm a 14-year-old competitive player with 150+ tournaments under my belt and a 2150 rating.  
-My passion lies in helping others enjoy the game as much as I do. Let's grow your skills together!
-""")
-
-    with col2:
-        shouri_img = Image.open(BytesIO(requests.get("https://i.postimg.cc/d3bZwnGq/Untitled-design-2025-07-02-T093312-238.png").content))
-        st.image(shouri_img, caption="Shouri Mosaliganti (USCF 1700)", use_container_width=True)
-        st.markdown("""
-**Shouri Mosaliganti**  
-📧 [28stu521@lexingtonma.org](mailto:28stu521@lexingtonma.org)  
-📞 857-214-9563  
-🗓️ [Book a Trial](https://calendly.com/your-trial-link)
-
-I'm a 14-year-old coach and chess enthusiast with over 180 tournaments of experience.  
-I specialize in teaching tactics, confidence-building, and joy through chess.
-""")
-
-# --- Why Chess Is the Best Move ---
-elif page == "Why Chess is the Best Move":
-    st.title("Why Chess is the Best Move")
-
-    img = Image.open(BytesIO(requests.get("https://i.postimg.cc/J0HS2wZ4/image.png").content))
-    st.image(img, use_container_width=True)
-
-    st.markdown("### What Chess Builds:")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("🧠 **Critical Thinking**  \nPlan ahead, adapt, and evaluate.")
-        st.markdown("🎯 **Focus**  \nDevelop laser-like attention.")
-        st.markdown("💡 **Creativity**  \nFind unexpected and elegant solutions.")
-    with col2:
-        st.markdown("🧮 **Problem Solving**  \nTrain logic and strategy.")
-        st.markdown("🗺️ **Planning**  \nUnderstand cause and effect.")
-        st.markdown("📚 **Memory**  \nImprove recall and pattern recognition.")
-
-    st.markdown("### 👉 Ready to develop these skills?")
-    st.link_button("Join a Class Today", "https://your-signup-form.com")
-
-# --- Summer Camp ---
-elif page == "Summer Camp":
-    st.title("Summer Chess Camp 2025")
-    flyer_url = "https://i.postimg.cc/vBL9yDy4/HOPKINGTON-CHURCH-1.png"
-    flyer_response = requests.get(flyer_url)
-    flyer_image = Image.open(BytesIO(flyer_response.content))
-
-    st.markdown('<div class="full-width-img">', unsafe_allow_html=True)
-    st.image(flyer_image, caption="Hopkinton Chess Camp 2025", use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    st.header("Pricing")
-    st.markdown("""
-- **$100** for 4 group sessions  
-- **$30** for 1 class  
-- 🎁 Free 1-on-1 trial class with every camper!
+    st.subheader("Camps")
+    st.write("""
+        We host annual Summer Chess Camps for kids of all ages and skill levels, offering both full-day 
+        (9:00 AM – 3:00 PM, $400/week) and half-day (9:00 AM – 12:00 PM, or 12:00 PM- PM, $250/week) 
+        options. Each day is packed with group lessons customized to different abilities, puzzle challenges, 
+        chess-related activities like bughouse, blitz games, chess art, and small tournaments. Beyond the 
+        board, we emphasize teamwork and community-building through collaborative exercises, outdoor play, 
+        coach-led simuls, and team games. 
+        Location: 146 E Main St, Hopkinton, MA 01748 - August 11-15, 2025.
     """)
 
-    st.link_button("Register Now", "https://forms.gle/fvagn29qQTBpXq1P6")
-
-
-
-    st.subheader("Testimonials")
-    st.info("“The camp was amazing! My son loved it and learned so much.” – Parent, 2023")
-
-# --- Motivation ---
-elif page == "Motivation":
-    st.title("Motivation")
-    img = Image.open(BytesIO(requests.get("https://i.postimg.cc/13MP6QKL/image-1.png").content))
-    st.markdown('<div class="full-width-img">', unsafe_allow_html=True)
-    st.image(img, use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    st.markdown("""
-### Why We Coach
-We believe chess is more than a game — it’s a mindset. It teaches us patience, strategy, confidence, and persistence.
-
-> “Chess has taught me patience and resilience.” — **Dhairya**
+    st.subheader("Group Lessons")
+    st.write("""
+        Our group classes contain roughly 4-6 kids with prices as $20 for each class or $70 a month. 
+        We have two levels (0-1000) and (1000-1500), focused on analyzing student games and teaching 
+        crucial concepts in all three phases of the game. This option is better for younger kids due to 
+        the blend of fun and social interaction with learning, aimed to boost the interest in the game.
     """)
 
-# --- Book a Class ---
-elif page == "Book a Class":
-    st.title("Book a Class")
-
-    st.markdown("""
-### Options:
-- 🧒 **Beginner Class** – Intro to chess fundamentals
-- ♟️ **Intermediate Strategy** – Opening, middlegame & endgame
-- 🔥 **Tactics Training** – Puzzles and competitive scenarios
-
-Use our form or book directly below.
+    st.subheader("Tournaments")
+    st.write("""
+        We run tournaments every other month in the Boylston Chess Club (35 Kingston St STE 1, Boston, MA 02111). 
+        These tournaments are usually 4 round swiss tournaments or quads, costing $20-30 per tournament. 
+        In the Swiss there are three sections, U1000, U1600, and Open.
     """)
+
+
+# Sign Up Page
+elif page == "Sign Up":
+    st.header("Sign Up")
+    st.write("Sign up for any of our services here!")
+    
+    with st.form("signup_form"):
+        full_name_child = st.text_input("Full Name (Child) *")
+        full_name_parent = st.text_input("Full Name (Parent or Guardian)")
+        contact_info = st.text_input("Phone Number / Email (Parent or Student)")
+        skill_level = st.selectbox("Skill Level of the Child", 
+                                    ["Beginner (Knows the Basics)", 
+                                     "Beginner Advanced (Plays Online)", 
+                                     "Intermediate (Started Playing USCF tournaments)", 
+                                     "Advanced (Regular Player in Tournaments)"])
+        uscf_rating = st.text_input("If rated, what is your current USCF/FIDE rating?")
+        interests = st.multiselect("What are you interested in?", 
+                                    ["Summer Camp", "Group Lessons", "Private Lessons", "Tournaments"])
+        availability = st.multiselect("What is your availability?", 
+                                       ["Before 4 PM", "4 PM - 5 PM", "5 PM - 6 PM", 
+                                        "6 PM - 7 PM", "7 PM - 8 PM", "8 PM - 9 PM"],
+                                       default=["Before 4 PM"])
+        private_class_type = st.selectbox("If interested in private classes", 
+                                           ["In-person (Rates start at $40 an hour)", 
+                                            "Online (Rates start at $30 an hour)", "Other:"])
+        questions = st.text_area("Do you have any questions for us?")
+        
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+            st.success("Thank you for signing up! We will get back to you soon.")
+
 
     st.link_button("Sign Up via Google Form", "https://forms.gle/fvagn29qQTBpXq1P6")
 
